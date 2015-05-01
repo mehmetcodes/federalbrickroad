@@ -6,7 +6,7 @@
 
 This project is a bi-product of a federal hackathon initiated at the United States Census Center for Applied Technology.
 
-It is not a real product, but a prototype and does not represent any government organization in any manner whatsoever, despite the fact that it was initiative borne of a federal hackathon.  The contents are [GPL](https://www.gnu.org/licenses/lgpl.html) 
+It is not a real product, but a prototype and does not represent any government organization in any manner whatsoever, despite the fact that it was initiative borne of a federal hackathon.  The contents are [LGPL](https://www.gnu.org/licenses/lgpl.html) 
 
 Version | Author   | Modification | Date
 --------| -------- | -------------| ------
