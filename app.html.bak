@@ -1,0 +1,94 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>app-router</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="/bower_components/font-roboto/roboto.html">
+    
+    <link rel="import" href="/bower_components/app-router/app-router.html">
+    <link rel="import" href="/bower_components/login-box/login-box.html">
+  </head>
+  <body unresolved>
+      <template is="auto-binding" id="ltmp">
+        <template bind if={{ !login }}>
+            <div layout vertical center>
+            <login-box id="lbox">
+                <div top>
+                  <img src="yellow-brick-road.jpg" class="radial" />
+                </div>
+                <div bottom>
+                  <p>Federal Brick Road</p>
+                </div>
+        </login-box>
+                </div>
+        </template>
+        <template if={{login}}>
+          
+          Yay logged in!
+        </template>
+      
+      </template>
+   <!--
+      <core-toolbar style="background: #4285f4;">
+           <span flex>Federal Brick Road - Home </span>
+      <paper-menu-button halign="right">
+        <paper-icon-button icon="social:person"></paper-icon-button>
+        <paper-dropdown class="dropdown" transition="">
+          <core-menu class="menu">
+            <paper-item on-click="{{login}}" hidden?="{{!statusKnown || user}}">Login</paper-item>
+            <paper-item on-click="{{logout}}" hidden?="{{!statusKnown || !user}}">Logout</paper-item>
+          </core-menu>
+        </paper-dropdown>
+      </paper-menu-button>
+
+          </core-toolbar>
+   
+    <core-toolbar style="background: #4285f4;">
+    <paper-icon-button icon="menu"  ></paper-icon-button>
+    <span flex>Federal Brick Road - Home </span>
+    <paper-icon-button icon="star"></paper-icon-button>
+    <paper-icon-button icon="more-vert"></paper-icon-button>
+        
+  </core-toolbar>
+      <paper-tabs id="tabs" selected="all" self-end>
+    <paper-tab name="all">All</paper-tab>
+    <paper-tab name="favorites">Favorites</paper-tab>
+  </paper-tabs>
+
+       <paper-toast id="toast2" text="Connection timed out. Showing limited messages.">
+            <div style="color: blue;" on-tap="{{retry}}">Retry</div>
+        </paper-toast>
+      <script>
+          
+  var tabs = document.querySelector('paper-tabs');
+
+  tabs.addEventListener('core-select', function() {
+      console.log("Selected: " + tabs.selected);
+      connectionTimeoutNotify(document.querySelector('#toast2'));
+  });
+
+  function connectionTimeoutNotify(el) {
+    el.show();
+  }
+</script>
+-->
+    <script>
+      lb = document.querySelector('#tmpl');
+      
+      console.log(lb)
+      document.addEventListener('polymer-ready', function(e) {
+      
+      lb = document.querySelector('#tmpl');
+      
+      console.log(lb)
+      lb.addEventListener('login-box-login-try', function(e) { login = true;});
+    });
+      
+     
+      </script>
+  </body>
+   
+</html>

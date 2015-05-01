@@ -1,0 +1,6 @@
+#ignore components from bower
+/components
+/bower_components
+#ignore divshot
+.divshot-cache
+/node_modules

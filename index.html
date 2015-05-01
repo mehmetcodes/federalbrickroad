@@ -1,0 +1,235 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+    <title>Federal Brick Road</title>
+    <script src="/bower_components/webcomponentsjs/webcomponents.js"></script>
+    <link rel="import" href="/bower_components/polymer-filters/polymer-filters.html">
+   
+    <link rel="import" href="/bower_components/paper-toast/paper-toast.html">
+    <link rel="import" href="/bower_components/core-toolbar/core-toolbar.html">
+    <link rel="import" href="/bower_components/login-box/login-box.html">
+    <link rel="import" href="/bower_components/paper-progress/paper-progress.html">
+      <link rel="import" href="/bower_components/core-localstorage/core-localstorage.html">
+      <link rel="import" href="/bower_components/flatiron-director/flatiron-director.html">
+      <link rel="import" href="/bower_components/core-menu/core-menu.html">
+      <link rel="import" href="/bower_components/core-collapse/core-collapse.html">
+      <link rel="import" href="/bower_components/core-icons/core-icons.html">
+      <link rel="import" href="/bower_components/paper-button/paper-button.html">
+      <link rel="import" href="/bower_components/paper-icon-button/paper-icon-button.html">
+      <link rel="import" href="/bower_components/paper-menu-button/paper-menu-button.html">
+      <link rel="import" href="/bower_components/paper-item/paper-item.html">
+      <link rel="import" href="/bower_components/paper-dropdown/paper-dropdown.html">
+      <link rel="import" href="/bower_components/core-animated-pages/core-animated-pages.html">
+      <link rel="import" href="/bower_components/core-animated-pages/transitions/slide-from-right.html">
+      <link rel="import" href="/bower_components/core-scaffold/core-scaffold.html">
+     
+      
+      
+      <style>
+          
+  .dropdown.colored::shadow #ripple,
+    .dropdown.colored::shadow #background {
+      border: #0ff1cf;
+      background-color: #b7e1cd;
+    }
+
+  .maincontainer {
+      background: #EEE;
+      border-right-width: 2px;
+  }
+          
+  .card {
+        height: 400px;
+        border-radius: 3px;
+        text-align: start;
+        overflow: hidden;
+        background: #fff;
+        box-shadow: 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      }
+</style>
+  </head>
+  <body unresolved>
+      <template is="auto-binding" id="ltmp" >
+          <core-localstorage name="ls-myuser" value="{{myuser}}"></core-localstorage>
+          <core-localstorage name="ls-login" value="{{login}}"></core-localstorage>
+          <flatiron-director route="{{route}}" autoHash></flatiron-director>
+            <div layout vertical center hidden?="{{login}}">
+            <login-box id="lbox" hidden?="{{login}}">
+                <div top>
+                  <img src="yellow-brick-road.jpg" class="radial" />
+                </div>
+                <div bottom>
+                  <p>Federal Brick Road</p>
+                </div>
+            </login-box>
+                <p><strong>Try <em>dakota@census.gov</em></strong></p>
+                <p>....or just roll with your own</p>
+            </div>
+          
+         
+              <div class="maincontainer" id="maincontainer" hidden?="{{!login}}">
+                <core-toolbar tool flex>
+                  
+                    <div>
+                     <paper-icon-button icon="settings-power" aria-label="logout" id="logout" title="logout">Logout</paper-icon-button> 
+                     
+                      <paper-menu-button aria-label="{{myuser.username}}">
+                        <paper-icon-button icon="account-box"  noink></paper-icon-button>
+                        <paper-dropdown  class="dropdown colored" transition="">
+                          <core-menu class="menu" valueattr="hash" selected="{{route}}" selectedModel="{{selectedPage}}">
+                            <template repeat="{{ page in pages }}">
+                              <paper-item hash={{page.hash}}> <a href="#{{page.hash}}">{{page.name}}</a></paper-item>
+                            </template>
+                          </core-menu>
+                        </paper-dropdown>
+                      </paper-menu-button>
+                      </div>
+                      <div></div>
+                      <div ><h4>{{myuser.profile.name?myuser.profile.name:myuser.username}}</h4></div>
+                    
+                    </core-toolbar>
+                    
+                    <core-animated-pages valueattr="hash" selected="{{route}}" transitions="slide-from-right">
+                        <section hash="home" layout vertical>
+                          <div>Home</div>
+                        </section> 
+                        <section hash="profile" layout vertical center flex>
+                          
+                            <div><h3>Profile</h3></div>
+                             <div>
+                                <p><paper-input value="{{myuser.profile.name}}" label="My name" floatinglabel disabled?={{test}}></paper-input></p>                      
+                             </div>
+                                    <div vertical layout>
+                                    <template repeat="{{k in myuser.profile | objectKeys }}">
+                                    
+                                        <div style="padding:40px"><p><paper-input value="{{myuser.profile[k]}}" label="{{k}}" ></paper-input></p></div>
+                                        
+                                    </template>
+                            </div>
+                        </section>
+                        <section hash="contacts" layout vertical>
+                          <div>Contacts</div>
+                        </section>
+                    </core-animated-pages>
+          
+                </div>
+                
+          
+          <paper-toast id="welcometoast" class="capsule" text="Welcome {{myuser.profile.name?myuser.profile.name:myuser.username}} to Federal Brick Road!"></paper-toast>
+      </template>
+    <script>
+      
+        
+      jobs = {
+      
+            
+      
+      }
+        
+      dakota = {
+                 username:"dakota@census.gov",
+                 profile: {
+                            name: "Dakota Federales", 
+                            currentposition:"301-Admin",
+                            office:"4H053",
+                            location:"Suitland, MD",
+                            phone:"3x4567",
+                            email:"dakota@census.gov"
+                        },
+                 contacts: [
+                                {
+                                    name:"John Appleton",
+                                    description:"Worked on big statistics project with me",
+                                    email:"appleton@census.gov"
+                                },
+                                {
+                                    name:"Burt Reynolds",
+                                    description: "He's an actor",
+                                    email:"reynolds@census.gov"
+                                },
+                                {
+                                    name:"Hogan Hulk",
+                                    description:"The only person I know with Hulk in their last name",
+                                    email:"thehulk@census.gov"
+                                }
+                        
+                            ],
+          
+                   results: [
+                                
+                                
+                            ],
+                    requests: [
+                        
+                    ]
+                };    
+      
+      window.addEventListener('polymer-ready', function(e) {
+          window.addEventListener('template-bound',function(){
+                ltmp = document.querySelector('#ltmp');
+                ltmp.model.route =  "profile";
+                ltmp.model.usettings = ["Home","Profile","Contacts"];
+                ltmp.model.pages = [
+                        {name: 'Home', hash: 'home'},
+                        {name: 'Profile', hash: 'profile'},
+                        {name: 'Contacts', hash: 'contacts'},
+                  ];
+               
+                lbox = document.querySelector('#lbox');
+                console.log(lbox);
+                lbox.addEventListener('login-box-login-try', function(e) { 
+                    ltmp.login = true; 
+                    
+                    console.log("fired");
+                    console.log(e.detail);
+                    if (typeof ltmp.myuser == 'undefined'){
+                        ltmp.myuser = { 
+                                        username:"",
+                                        profile:{
+                                            name:"",
+                                            currentposition:"",
+                                            office:"",
+                                            location:"",
+                                            phone:"",
+                                            email:""
+                                        },
+                                        contacts:[],
+                                        results:[]
+                                      };
+                    }
+                    ltmp.myuser.username=e.detail.identifier;
+                    if(ltmp.myuser.username === dakota.username){
+                        ltmp.myuser=dakota;
+                    }
+                    wt = document.querySelector('#welcometoast');
+                    wt.show();
+                    
+                });
+                logout = document.querySelector('#logout');
+                    console.log(logout);
+                    logout.addEventListener('click', function(){
+                        ltmp.login = false;
+                        ltmp.myuser = undefined;
+                    });
+                ltmp.model.profilekeys = Object.keys(ltmp.myuser.profile).length;
+                    Object.observe(ltmp.model, function(changes){
+                        ltmp.model.profilekeys  = Object.keys(ltmp.myuser.profile).length;
+                        
+                    });
+                    
+                
+                
+            });
+                
+        
+       });
+    
+      
+     
+      </script>
+  </body>
+   
+</html>

@@ -1,0 +1,25 @@
+{
+  "name": "polymer-fed",
+  "version": "0.0.1",
+  "authors": [
+    "M <mehmet.yilmaz@gmail.com>"
+  ],
+  "description": "Polymer version of Federal Brick Road",
+  "main": "app.html",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.5",
+    "app-router": "~2.6.0",
+    "core-icons": "Polymer/core-icons#~0.5.5",
+    "core-pages": "Polymer/core-pages#~0.5.5",
+    "core-elements": "Polymer/core-elements#~0.5.5",
+    "paper-elements": "Polymer/paper-elements#~0.5.5",
+    "font-roboto": "Polymer/font-roboto#~0.5.5",
+    "login-box": "~0.1.0",
+    "flatiron-director": "Polymer/flatiron-director#~0.5.0",
+    "core-toolbar": "Polymer/core-toolbar#~0.5.5",
+    "progress-bubble": "~0.1.3",
+    "polymer-filters": "git://github.com/addyosmani/polymer-filters.git#master"
+  }
+}
